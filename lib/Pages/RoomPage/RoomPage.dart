@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButton.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/LobbyPage/LobbyPage.dart';
 
 class RoomPage extends StatelessWidget {
   const RoomPage({super.key});
@@ -66,7 +69,9 @@ class RoomPage extends StatelessWidget {
                   ?.copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             Spacer(),
-            PrimaryButton(buttonText: "Create Room", onTap: () {}),
+            PrimaryButton(buttonText: "Create Room", onTap: () {
+              Get.to(LobbyPage());
+            }),
           ],
         ),
       ),
