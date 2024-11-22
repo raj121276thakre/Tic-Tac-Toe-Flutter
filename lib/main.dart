@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/PageRoute.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/Theme.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/HomePage/HomePage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/SplashPage/SplashPage.dart';
 
 void main() {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Tik Tac Toe MultiPlayer',
         theme: lightTheme,
-        home: const SplashPage()
+        home: const HomePage(),
+        //home: const SplashPage()
         //home: const RoomPage()
         );
   }

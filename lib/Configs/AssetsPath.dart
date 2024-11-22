@@ -16,7 +16,7 @@ class IconsPath {
   static const cameraIcon = "${basePath}camera.svg";
 
   static const userIcon = "${basePath}user.svg";
-  static const groupLogo = "${basePath}group.svg";
+  static const groupIcon = "${basePath}group.svg";
   static const gameIcon = "${basePath}game.svg";
   static const infoIcon = "${basePath}info.svg";
   static const githubIcon = "${basePath}github.svg";

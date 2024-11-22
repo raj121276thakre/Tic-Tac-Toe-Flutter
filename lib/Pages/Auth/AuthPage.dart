@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/HomePage/HomePage.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -40,7 +43,9 @@ class AuthPage extends StatelessWidget {
             ),
             PrimaryButtonWithIcon(
               buttonText: 'Login With Google',
-              onTap: () {},
+              onTap: () {
+                Get.offAll(const HomePage());
+              },
               iconPath: IconsPath.googleIcon,
             )
           ],
