@@ -44,7 +44,7 @@ class InGameUserCard extends StatelessWidget {
                       SizedBox(
                         height: 6,
                       ),
-                      SvgPicture.asset(icon),
+                      SvgPicture.asset(icon, color: Theme.of(context).colorScheme.primaryContainer,width: 30,),
                     ],
                   ),
                 )
