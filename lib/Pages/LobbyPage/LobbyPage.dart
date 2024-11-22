@@ -57,7 +57,7 @@ class LobbyPage extends StatelessWidget {
                 height: 20,
               ),
               PrimaryButton(buttonText: "Start Game", onTap: (){
-                Get.to(()=>Gamepage());
+                Get.to(()=>GamePage());
               })
             ],
           ),
