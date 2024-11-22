@@ -4,6 +4,7 @@ import 'package:tik_tac_toe_multiplayer/Configs/PageRoute.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/Theme.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/HomePage/HomePage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/SplashPage/SplashPage.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/UpdateProfile/UpdateProfile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Tik Tac Toe MultiPlayer',
         theme: lightTheme,
-        home: const HomePage(),
+        home: const UpdateProfile(),
         //home: const SplashPage()
         //home: const RoomPage()
         );
