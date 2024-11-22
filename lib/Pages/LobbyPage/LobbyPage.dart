@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButton.dart';
 import 'package:tik_tac_toe_multiplayer/Components/UserCard.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
@@ -44,7 +43,7 @@ class LobbyPage extends StatelessWidget {
               ),
               PricingArea(),
               SizedBox(
-                height: 90,
+                height: 80,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,9 +55,12 @@ class LobbyPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              PrimaryButton(buttonText: "Start Game", onTap: (){
-                Get.to(()=>GamePage());
-              })
+              PrimaryButton(
+                  buttonText: "Start Game",
+                  onTap: () {
+                    Get.to(() => GamePage());
+                  }),
+
             ],
           ),
         ),

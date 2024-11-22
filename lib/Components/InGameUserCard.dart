@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
 
 class InGameUserCard extends StatelessWidget {
   final String icon;
+
   const InGameUserCard({super.key, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
-    final h = MediaQuery.of(context).size.height;
+    //final h = MediaQuery.of(context).size.height;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -34,7 +34,7 @@ class InGameUserCard extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(10),
@@ -44,7 +44,11 @@ class InGameUserCard extends StatelessWidget {
                       SizedBox(
                         height: 6,
                       ),
-                      SvgPicture.asset(icon, color: Theme.of(context).colorScheme.primaryContainer,width: 30,),
+                      SvgPicture.asset(
+                        icon,
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        width: 30,
+                      ),
                     ],
                   ),
                 )

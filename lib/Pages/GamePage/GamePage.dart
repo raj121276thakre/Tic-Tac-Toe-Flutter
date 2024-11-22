@@ -13,172 +13,179 @@ class GamePage extends StatelessWidget {
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){},child: 
-        SvgPicture.asset(IconsPath.smsIcon)
-        ,),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: SvgPicture.asset(IconsPath.smsIcon),
+        ),
         body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // Row(
-              //   children: [
-              //     SvgPicture.asset(IconsPath.backIcon),
-              //     SizedBox(
-              //       width: 15,
-              //     ),
-              //     Text(
-              //       "Play Game",
-              //       style: Theme.of(context).textTheme.bodyMedium,
-              //     ),
-              //   ],
-              // ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  Column(
-                    children: [
-                      InGameUserCard(
-                        icon: IconsPath.xIcon,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(IconsPath.wonIcon),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text("WON : 12"),
-                          ],
-                        ),
-                      )
-                    ],
+                  // Row(
+                  //   children: [
+                  //     SvgPicture.asset(IconsPath.backIcon),
+                  //     SizedBox(
+                  //       width: 15,
+                  //     ),
+                  //     Text(
+                  //       "Play Game",
+                  //       style: Theme.of(context).textTheme.bodyMedium,
+                  //     ),
+                  //   ],
+                  // ),
+                  SizedBox(
+                    height: 50,
                   ),
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InGameUserCard(
-                        icon: IconsPath.oIcon,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(IconsPath.wonIcon),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text("WON : 12"),
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              DottedBorder(
-                borderType: BorderType.RRect,
-                radius: Radius.circular(12),
-                dashPattern: [10, 10],
-                color: Theme.of(context).colorScheme.primary,
-                strokeWidth: 2,
-                child: Container(
-                  margin: EdgeInsets.all(5),
-                  width: w,
-                  height: w - 33,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: GridView.builder(
-                      itemCount: 9,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3),
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.all(0.5),
-
-                          decoration: BoxDecoration(
-
-                            color: playValue[index] == "X"
-                                ? Theme.of(context).colorScheme.primary
-                                : playValue[index] == "O"
-                                    ? Theme.of(context).colorScheme.secondary
-                                    :  playValue[index] == ""
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context)
-                                .colorScheme
-                                .primaryContainer,
-                            //Theme.of(context).colorScheme.secondary,
-                            borderRadius: index == 0
-                                ? const BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                  )
-                                : index == 2
-                                    ? const BorderRadius.only(
-                                        topRight: Radius.circular(20),
-                                      )
-                                    : index == 6
-                                        ? const BorderRadius.only(
-                                            bottomLeft: Radius.circular(20))
-                                        : index == 8
-                                            ? const BorderRadius.only(
-                                                bottomRight:
-                                                    Radius.circular(20))
-                                            : const BorderRadius.only(),
+                      Column(
+                        children: [
+                          InGameUserCard(
+                            icon: IconsPath.xIcon,
                           ),
-                          child: Center(
-                              child: playValue[index] == "X"
-                                  ? SvgPicture.asset(
-                                      IconsPath.xIcon,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primaryContainer,
-                                      width: 45,
-                                    )
-                                  : playValue[index] == "O"
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(IconsPath.wonIcon),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("WON : 12"),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          InGameUserCard(
+                            icon: IconsPath.oIcon,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(IconsPath.wonIcon),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("WON : 12"),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(12),
+                    dashPattern: [10, 10],
+                    color: Theme.of(context).colorScheme.primary,
+                    strokeWidth: 2,
+                    child: Container(
+                      margin: EdgeInsets.all(5),
+                      width: w,
+                      height: w - 33,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: GridView.builder(
+                          itemCount: 9,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3),
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.all(0.5),
+                              decoration: BoxDecoration(
+                                color: playValue[index] == "X"
+                                    ? Theme.of(context).colorScheme.primary
+                                    : playValue[index] == "O"
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .secondary
+                                        : playValue[index] == ""
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer
+                                            : Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer,
+                                //Theme.of(context).colorScheme.secondary,
+                                borderRadius: index == 0
+                                    ? const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                      )
+                                    : index == 2
+                                        ? const BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                          )
+                                        : index == 6
+                                            ? const BorderRadius.only(
+                                                bottomLeft: Radius.circular(20))
+                                            : index == 8
+                                                ? const BorderRadius.only(
+                                                    bottomRight:
+                                                        Radius.circular(20))
+                                                : const BorderRadius.only(),
+                              ),
+                              child: Center(
+                                  child: playValue[index] == "X"
                                       ? SvgPicture.asset(
-                                          IconsPath.oIcon,
+                                          IconsPath.xIcon,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primaryContainer,
-                                          width: 50,
+                                          width: 45,
                                         )
-                                      : playValue[index] == ""
-                                          ? SizedBox()
-                                          : SizedBox()),
-                        );
-                      }),
-                ),
-              )
-            ],
+                                      : playValue[index] == "O"
+                                          ? SvgPicture.asset(
+                                              IconsPath.oIcon,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                              width: 50,
+                                            )
+                                          : playValue[index] == ""
+                                              ? SizedBox()
+                                              : SizedBox()),
+                            );
+                          }),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 }

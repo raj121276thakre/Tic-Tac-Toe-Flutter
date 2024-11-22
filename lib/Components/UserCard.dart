@@ -8,8 +8,8 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
-    final h = MediaQuery.of(context).size.height;
-    return   Stack(
+   // final h = MediaQuery.of(context).size.height;
+    return Stack(
       clipBehavior: Clip.none,
       children: [
         Positioned(
@@ -17,23 +17,35 @@ class UserCard extends StatelessWidget {
             width: w / 2.6,
             height: 140,
             decoration: BoxDecoration(
-                color:
-                Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(20),
-
+              color: Theme.of(context).colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(20),
             ),
-
             child: Column(
               children: [
-                SizedBox(height: 60,),
-                Text("Raj Thakre", style: Theme.of(context).textTheme.bodyMedium,),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 60,
+                ),
+                Text(
+                  "Raj Thakre",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(IconsPath.coinIcon, width: 20,),
-                    SizedBox(width: 10,),
-                    Text("23 Coins", style: Theme.of(context).textTheme.bodyMedium,),
+                    SvgPicture.asset(
+                      IconsPath.coinIcon,
+                      width: 20,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "23 Coins",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ],
                 )
               ],
@@ -52,9 +64,7 @@ class UserCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 border: Border.all(
                     color: Theme.of(context).colorScheme.primaryContainer,
-                    width: 3
-                )
-            ),
+                    width: 3)),
           ),
         ),
       ],
