@@ -2,6 +2,7 @@ import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/Auth/AuthPage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/RoomPage/RoomPage.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -74,7 +75,7 @@ class WelcomePage extends StatelessWidget {
             OutlinedButton(
 
                 onPressed: () {
-                  Get.offAll(const RoomPage());
+                  Get.offAll(const AuthPage());
                 },
                 child: Text(
                   'Get Started',
@@ -90,7 +91,7 @@ class WelcomePage extends StatelessWidget {
         itemCount: 3,
         physics: BouncingScrollPhysics(),
         onFinish: () {
-          Get.offAll(const RoomPage());
+          Get.offAll(const AuthPage());
         },
         itemBuilder: (int index) {
           return pages[index];
