@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/PageRoute.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/Theme.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      builder: FToastBuilder(), //for toast
       getPages: pages,
       debugShowCheckedModeBanner: false,
       title: 'Tik Tac Toe MultiPlayer',
