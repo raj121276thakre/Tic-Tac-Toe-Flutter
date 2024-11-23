@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/Auth/AuthPage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/GamePAge/GamePage.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/GamePage/SinglePlayer.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/HomePage/HomePage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/RoomPage/RoomPage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/LobbyPage/LobbyPage.dart';
@@ -9,6 +10,11 @@ import 'package:tik_tac_toe_multiplayer/Pages/UpdateProfile/UpdateProfile.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/Welcome/WelcomePage.dart';
 
 var pages = [
+  GetPage(
+    name: "/home",
+    page: () => HomePage(),
+  ),
+
   GetPage(
     name: "/room",
     page: () => RoomPage(),
@@ -43,6 +49,12 @@ var pages = [
     name: "/welcome",
     page: () => WelcomePage(),
   ),
+
+  GetPage(
+    name: "/singlePlayer",
+    page: () => SinglePlayer(),
+  ),
+
 ];
 
 

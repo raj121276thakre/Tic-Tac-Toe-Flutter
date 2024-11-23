@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/GamePage/SinglePlayer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -45,7 +46,7 @@ class HomePage extends StatelessWidget {
             PrimaryButtonWithIcon(
               buttonText: 'Single Player',
               onTap: () {
-                Get.offAll(const HomePage());
+                Get.toNamed("/singlePlayer");
               },
               iconPath: IconsPath.userIcon,
             ),
@@ -53,7 +54,7 @@ class HomePage extends StatelessWidget {
             PrimaryButtonWithIcon(
               buttonText: 'Multi Player',
               onTap: () {
-                Get.offAll(const HomePage());
+               // Get.toNamed("/singlePlayer");
               },
               iconPath: IconsPath.groupIcon,
             ),
