@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/PageRoute.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/Theme.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/SplashPage/SplashPage.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/UpdateProfile/UpdateProfile.dart';
 import 'package:tik_tac_toe_multiplayer/firebase_options.dart';
 
 void main() async {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Tik Tac Toe MultiPlayer',
       theme: lightTheme,
       home: const SplashPage(),
+    //   const SplashPage()
     );
   }
 }
