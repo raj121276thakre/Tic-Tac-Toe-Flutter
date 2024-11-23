@@ -96,6 +96,13 @@ class SinglePlayerController extends GetxController {
           padding: EdgeInsets.all(10),
           child: winner == "none" ? Column(
             children: [
+              SvgPicture.asset(
+                IconsPath.loseIcon,
+                width: 100,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 "Match Draw",
                 style: TextStyle(fontSize: 18),
