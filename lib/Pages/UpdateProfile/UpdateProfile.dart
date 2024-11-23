@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Controller/AuthController.dart';
 
 class UpdateProfile extends StatelessWidget {
   const UpdateProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -84,7 +88,9 @@ class UpdateProfile extends StatelessWidget {
               ),
               PrimaryButtonWithIcon(
                   buttonText: "Save",
-                  onTap: () {},
+                  onTap: () {
+                    authController.updateProfile();
+                  },
                   iconPath: IconsPath.saveIcon),
             ],
           ),

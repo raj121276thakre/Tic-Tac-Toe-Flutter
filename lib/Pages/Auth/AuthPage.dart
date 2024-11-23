@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Controller/AuthController.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/HomePage/HomePage.dart';
 
 class AuthPage extends StatelessWidget {
@@ -11,6 +11,7 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -44,7 +45,8 @@ class AuthPage extends StatelessWidget {
             PrimaryButtonWithIcon(
               buttonText: 'Login With Google',
               onTap: () {
-                Get.offAll(const HomePage());
+                authController.login();
+               // Get.offAll(const HomePage());
               },
               iconPath: IconsPath.googleIcon,
             )

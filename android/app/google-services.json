@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1082433677457",
+    "project_id": "jetpack-chat-app-b3f19",
+    "storage_bucket": "jetpack-chat-app-b3f19.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082433677457:android:269fc77b1271ea003b3730",
+        "android_client_info": {
+          "package_name": "com.example.tik_tac_toe_multiplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082433677457-8ib701uvrlgihvv13u0o25hv1671huar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLO2tvuMFIolC5YF61jhOchZUnBwphtGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082433677457-8ib701uvrlgihvv13u0o25hv1671huar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
