@@ -3,12 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({super.key});
+  final String imageUrl;
+  final String name;
+  final String coins;
+
+  const UserCard({super.key, required this.imageUrl, required this.name, required this.coins});
 
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
-   // final h = MediaQuery.of(context).size.height;
+    // final h = MediaQuery.of(context).size.height;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -26,7 +30,7 @@ class UserCard extends StatelessWidget {
                   height: 60,
                 ),
                 Text(
-                  "Raj Thakre",
+                  name.toString(),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -43,7 +47,7 @@ class UserCard extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      "23 Coins",
+                      "$coins Coins",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
@@ -60,11 +64,19 @@ class UserCard extends StatelessWidget {
             height: 100,
             //color: Colors.red,
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    width: 3)),
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(100),
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  width: 3),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
       ],

@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
 
 class PricingArea extends StatelessWidget {
-  const PricingArea({super.key});
+  final String entryPrice;
+  final String winningPrice;
+  const PricingArea({super.key, required this.entryPrice, required this.winningPrice});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +16,11 @@ class PricingArea extends StatelessWidget {
           children: [
             //Entry fee
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Theme.of(context).colorScheme.secondary),
-              child: Row(
+              child: const Row(
                 children: [
                   Text("Entry Fee"),
                 ],
@@ -55,7 +57,7 @@ class PricingArea extends StatelessWidget {
                 children: [
                   SvgPicture.asset(IconsPath.coinIcon),
                   SizedBox(width: 10,),
-                  Text("23"),
+                  Text(entryPrice.toString()),
                 ],
               ),
             )
@@ -112,7 +114,7 @@ class PricingArea extends StatelessWidget {
                 children: [
                   SvgPicture.asset(IconsPath.coinIcon),
                   SizedBox(width: 10,),
-                  Text("46"),
+                  Text(winningPrice.toString()),
                 ],
               ),
             )

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/Auth/AuthPage.dart';
-import 'package:tik_tac_toe_multiplayer/Pages/GamePAge/GamePage.dart';
+import 'package:tik_tac_toe_multiplayer/Pages/GamePAge/MultiPlayer.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/GamePage/SinglePlayer.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/HomePage/HomePage.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/RoomPage/RoomPage.dart';
@@ -20,10 +20,10 @@ var pages = [
     page: () => RoomPage(),
   ),
 
-  GetPage(
-    name: "/lobby",
-    page: () => LobbyPage(),
-  ),
+  // GetPage(
+  //   name: "/lobby",
+  //   page: () => LobbyPage(),
+  // ),
 
   GetPage(
     name: "/auth",
@@ -36,8 +36,8 @@ var pages = [
   ),
 
   GetPage(
-    name: "/gamePage",
-    page: () => GamePage(),
+    name: "/multiPlayer",
+    page: () => MultiPlayer(),
   ),
 
   GetPage(

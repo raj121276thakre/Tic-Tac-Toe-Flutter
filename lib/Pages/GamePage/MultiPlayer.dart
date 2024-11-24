@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tik_tac_toe_multiplayer/Components/InGameUserCard.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
 
-class GamePage extends StatelessWidget {
-  const GamePage({super.key});
+class MultiPlayer extends StatelessWidget {
+  const MultiPlayer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class GamePage extends StatelessWidget {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          child: SvgPicture.asset(IconsPath.smsIcon),
+          child: SvgPicture.asset(IconsPath.micIcon),
         ),
         body: SafeArea(
           child: Padding(

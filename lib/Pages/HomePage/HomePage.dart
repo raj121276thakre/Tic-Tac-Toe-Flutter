@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Controller/ProfileController.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/GamePage/SinglePlayer.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileController profileController = Get.put(ProfileController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -54,7 +56,7 @@ class HomePage extends StatelessWidget {
             PrimaryButtonWithIcon(
               buttonText: 'Multi Player',
               onTap: () {
-               // Get.toNamed("/singlePlayer");
+               Get.toNamed("/room");
               },
               iconPath: IconsPath.groupIcon,
             ),

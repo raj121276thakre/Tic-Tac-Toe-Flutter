@@ -16,36 +16,49 @@ class ProfileController extends GetxController {
   final db = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
 
+  Rx<UserModel> user = UserModel().obs;
+
+  @override
+  void onInit() {
+    getUserDetails();
+    super.onInit();
+  }
+
+  Future<void> getUserDetails() async {
+    await db.collection("users").doc(auth.currentUser!.uid).get().then((value) {
+      user.value = UserModel.fromJson(value.data()!);
+    });
+  }
+
   Future<void> updateProfile(String name, String imagePath) async {
-    isLoading.value =true;
+    isLoading.value = true;
     try {
-     if(imagePath != ""&& name != ""){
-       //var uploadedImageUrl = await uploadFileToFirebase(imagePath);
-       //.................enable Firebase Storage and then un comment above commment.
-       var uploadedImageUrl = imagePath;
+      if (imagePath != "" && name != "") {
+        //var uploadedImageUrl = await uploadFileToFirebase(imagePath);
+        //.................enable Firebase Storage and then un comment above commment.
+        var uploadedImageUrl = imagePath;
 
-       var newUser = UserModel(
-           id: auth.currentUser!.uid,
-           name: name,
-           email: auth.currentUser!.email,
-           image: uploadedImageUrl,
-           totalWins: "0");
+        var newUser = UserModel(
+            id: auth.currentUser!.uid,
+            name: name,
+            email: auth.currentUser!.email,
+            image: uploadedImageUrl,
+            totalWins: "0");
 
-       await db.collection("users").doc(auth.currentUser!.uid).set(
-         newUser.toJson(),
-       );
-       successMessage("Profile Updated");
-       Get.offAll(HomePage());
-
-     }else{
-       errorMessage("Please fill all the fields");
-     }
+        await db.collection("users").doc(auth.currentUser!.uid).set(
+              newUser.toJson(),
+            );
+        successMessage("Profile Updated");
+        Get.offAll(HomePage());
+      } else {
+        errorMessage("Please fill all the fields");
+      }
     } catch (e) {
       errorMessage("Profile Update Failed");
 
       print(e);
     }
-    isLoading.value =false;
+    isLoading.value = false;
   }
 
   Future<String> uploadFileToFirebase(String imagePath) async {

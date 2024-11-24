@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButton.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tik_tac_toe_multiplayer/Controller/RoomController.dart';
 import 'package:tik_tac_toe_multiplayer/Pages/LobbyPage/LobbyPage.dart';
 
 class RoomPage extends StatelessWidget {
@@ -10,6 +11,7 @@ class RoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RoomController roomController = Get.put(RoomController());
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -18,7 +20,9 @@ class RoomPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                SvgPicture.asset(IconsPath.backIcon),
+                InkWell(
+                    onTap: (){Get.back();},
+                    child: SvgPicture.asset(IconsPath.backIcon),),
                 SizedBox(
                   width: 15,
                 ),
@@ -56,7 +60,9 @@ class RoomPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            PrimaryButton(buttonText: "Join now", onTap: () {}),
+            PrimaryButton(buttonText: "Join now", onTap: () {
+              Get.toNamed("/lobby");
+            }),
             SizedBox(
               height: 20,
             ),
@@ -68,11 +74,17 @@ class RoomPage extends StatelessWidget {
                   ?.copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             Spacer(),
-            PrimaryButton(
-                buttonText: "Create Room",
-                onTap: () {
-                  Get.to(LobbyPage());
-                }),
+            Obx(
+                  () => roomController.isLoading.value
+                  ? CircularProgressIndicator()
+                  :  PrimaryButton(
+                      buttonText: "Create Room",
+                      onTap: () {
+                        // Get.to(LobbyPage());
+                        roomController.createRoom();
+                      }),
+            ),
+
 
           ],
         ),
