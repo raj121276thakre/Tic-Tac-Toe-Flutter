@@ -46,6 +46,8 @@ class RoomController extends GetxController {
       player1: player1,
       gameStatus: "lobby",
       player1Status: "waiting",
+      gameValue: ["", "", "", "", "", "", "", "", ""],
+      isXturn: true,
 
 
     );
@@ -55,7 +57,7 @@ class RoomController extends GetxController {
         newRoom.toJson(),
       );
       Get.to(LobbyPage(roomId: id));
-      successMessage("Done");
+      successMessage("Room Created");
     } catch (e) {
       errorMessage("Error");
       print(e);

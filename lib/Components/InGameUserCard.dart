@@ -3,8 +3,10 @@ import 'package:flutter_svg/svg.dart';
 
 class InGameUserCard extends StatelessWidget {
   final String icon;
+  final String name;
+  final String imageUrl;
 
-  const InGameUserCard({super.key, required this.icon});
+  const InGameUserCard({super.key, required this.icon, required this.name, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class InGameUserCard extends StatelessWidget {
                   height: 60,
                 ),
                 Text(
-                  "Raj Thakre",
+                  name,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -64,11 +66,18 @@ class InGameUserCard extends StatelessWidget {
             height: 100,
             //color: Colors.red,
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
+                //color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(100),
                 border: Border.all(
                     color: Theme.of(context).colorScheme.primaryContainer,
                     width: 3)),
+            child:  ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
       ],

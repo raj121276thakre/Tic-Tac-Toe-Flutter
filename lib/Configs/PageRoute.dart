@@ -35,10 +35,10 @@ var pages = [
     page: () => SplashPage(),
   ),
 
-  GetPage(
-    name: "/multiPlayer",
-    page: () => MultiPlayer(),
-  ),
+  // GetPage(
+  //   name: "/multiPlayer",
+  //   page: () => MultiPlayer(),
+  // ),
 
   GetPage(
     name: "/updateProfile",

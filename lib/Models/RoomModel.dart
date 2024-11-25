@@ -10,62 +10,39 @@ class RoomModel {
   String? gameStatus;
   String? player1Status;
   String? player2Status;
+  List<String>? gameValue;
+  bool? isXturn;
 
-  RoomModel(
-      {this.id,
-      this.entryFee,
-      this.winningPrize,
-      this.drawMatch,
-      this.player1,
-      this.player2,
-      this.gameStatus,
-      this.player1Status,
-      this.player2Status,
-      });
+  RoomModel({
+    this.id,
+    this.entryFee,
+    this.winningPrize,
+    this.drawMatch,
+    this.player1,
+    this.player2,
+    this.gameStatus,
+    this.player1Status,
+    this.player2Status,
+    this.gameValue,
+    this.isXturn,
+  });
 
-  // RoomModel.fromJson(Map<String, dynamic> json) {
-  //   if (json["id"] is String) {
-  //     id = json["id"];
-  //   }
-  //   if (json["entryFee"] is String) {
-  //     entryFee = json["entryFee"];
-  //   }
-  //   if (json["winningPrize"] is String) {
-  //     winningPrize = json["winningPrize"];
-  //   }
-  //   if (json["drawMatch"] is String) {
-  //     drawMatch = json["drawMatch"];
-  //   }
-  //   if (json["player1"] is Map) {
-  //     player1 =
-  //         json["player1"] == null ? null : UserModel.fromJson(json["player1"]);
-  //   }
-  //   if (json["player2"] is Map) {
-  //     player2 =
-  //         json["player2"] == null ? null : UserModel.fromJson(json["player2"]);
-  //   }
-  //   if (json["gameStatus"] is String) {
-  //     drawMatch = json["gameStatus"];
-  //   }
-  //   if (json["player1Status"] is String) {
-  //     drawMatch = json["player1Status"];
-  //   }
-  //   if (json["player2Status"] is String) {
-  //     drawMatch = json["player2Status"];
-  //   }
-  // }
   RoomModel.fromJson(Map<String, dynamic> json) {
     id = json["id"] as String?;
     entryFee = json["entryFee"] as String?;
     winningPrize = json["winningPrize"] as String?;
     drawMatch = json["drawMatch"] as String?;
-    player1 = json["player1"] != null ? UserModel.fromJson(json["player1"]) : null;
-    player2 = json["player2"] != null ? UserModel.fromJson(json["player2"]) : null;
+    player1 =
+        json["player1"] != null ? UserModel.fromJson(json["player1"]) : null;
+    player2 =
+        json["player2"] != null ? UserModel.fromJson(json["player2"]) : null;
     gameStatus = json["gameStatus"] as String?;
     player1Status = json["player1Status"] as String?;
     player2Status = json["player2Status"] as String?;
+    gameValue =
+        json["gameValue"] != null ? List<String>.from(json["gameValue"]) : null;
+    isXturn = json["isXturn"] as bool?;
   }
-
 
   static List<RoomModel> fromList(List<Map<String, dynamic>> list) {
     return list.map(RoomModel.fromJson).toList();
@@ -86,6 +63,10 @@ class RoomModel {
     _data["gameStatus"] = gameStatus;
     _data["player1Status"] = player1Status;
     _data["player2Status"] = player2Status;
+    if (gameValue != null) {
+      _data["gameValue"] = gameValue;
+    }
+    _data["isXturn"] = isXturn;
     return _data;
   }
 }

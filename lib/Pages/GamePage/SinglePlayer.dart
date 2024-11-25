@@ -233,6 +233,7 @@ class SinglePlayer extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

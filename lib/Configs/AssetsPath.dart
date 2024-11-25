@@ -34,6 +34,8 @@ class ImagePath{
   static const welcome3 = "${basePath}welcome3.png";
 }
 
+const String defaultImage = "https://firebasestorage.googleapis.com/v0/b/chat-app-56add.appspot.com/o/girl.png?alt=media&token=cfbc9f2f-a810-40b4-b34f-c79b6ca369aa";
+
 
 
 

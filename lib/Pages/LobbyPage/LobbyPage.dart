@@ -67,11 +67,11 @@ class LobbyPage extends StatelessWidget {
                     if (snapshot.data!.player1Status == "ready" &&
                         snapshot.data!.player2Status == "ready") {
                       WidgetsBinding.instance!.addPostFrameCallback((_) {
-                        Get.to(const MultiPlayer());
+                        Get.to(MultiPlayer(roomId: roomId,));
                       });
                     } else {
-                      errorMessage("Player2Status: ${snapshot.data!.player2Status}");
-                      print("Player2Status: ${snapshot.data!.player2Status}");
+                      // errorMessage("Player2Status: ${snapshot.data!.player2Status}");
+                      // print("Player2Status: ${snapshot.data!.player2Status}");
 
                     }
 
@@ -89,7 +89,7 @@ class LobbyPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             UserCard(
-                              imageUrl: snapshot.data!.player1!.image!,
+                              imageUrl: snapshot.data!.player1!.image! ?? defaultImage,
                               name: snapshot.data!.player1!.name!,
                               coins: "00",
                               status: snapshot.data!.player1Status ?? "waiting",
@@ -100,7 +100,7 @@ class LobbyPage extends StatelessWidget {
                                     width: w / 2.6,
                                   )
                                 : UserCard(
-                                    imageUrl: snapshot.data!.player2!.image!,
+                                    imageUrl: snapshot.data!.player2!.image! ?? defaultImage,
                                     name: snapshot.data!.player2!.name!,
                                     coins: "00",
                                     status: snapshot.data!.player2Status ??
