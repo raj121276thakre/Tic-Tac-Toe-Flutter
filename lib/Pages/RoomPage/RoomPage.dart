@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tik_tac_toe_multiplayer/Components/PrimaryButton.dart';
 import 'package:tik_tac_toe_multiplayer/Configs/AssetsPath.dart';
 import 'package:tik_tac_toe_multiplayer/Controller/RoomController.dart';
-import 'package:tik_tac_toe_multiplayer/Pages/LobbyPage/LobbyPage.dart';
 
 class RoomPage extends StatelessWidget {
   const RoomPage({super.key});
@@ -12,6 +11,7 @@ class RoomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RoomController roomController = Get.put(RoomController());
+    TextEditingController roomId = TextEditingController();
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -21,8 +21,11 @@ class RoomPage extends StatelessWidget {
             Row(
               children: [
                 InkWell(
-                    onTap: (){Get.back();},
-                    child: SvgPicture.asset(IconsPath.backIcon),),
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: SvgPicture.asset(IconsPath.backIcon),
+                ),
                 SizedBox(
                   width: 15,
                 ),
@@ -46,6 +49,7 @@ class RoomPage extends StatelessWidget {
               height: 20,
             ),
             TextField(
+              controller: roomId,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 fillColor: Theme.of(context).colorScheme.primaryContainer,
@@ -60,9 +64,17 @@ class RoomPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            PrimaryButton(buttonText: "Join now", onTap: () {
-              Get.toNamed("/lobby");
-            }),
+            Obx(
+              () => roomController.isLoading.value
+                  ? CircularProgressIndicator()
+                  : PrimaryButton(
+                      buttonText: "Join now",
+                      onTap: () {
+                        if (roomId.text.isNotEmpty) {
+                          roomController.joinRoom(roomId.text);
+                        }
+                      }),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -75,17 +87,15 @@ class RoomPage extends StatelessWidget {
             ),
             Spacer(),
             Obx(
-                  () => roomController.isLoading.value
+              () => roomController.isLoading.value
                   ? CircularProgressIndicator()
-                  :  PrimaryButton(
+                  : PrimaryButton(
                       buttonText: "Create Room",
                       onTap: () {
                         // Get.to(LobbyPage());
                         roomController.createRoom();
                       }),
             ),
-
-
           ],
         ),
       ),

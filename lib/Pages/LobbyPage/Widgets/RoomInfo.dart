@@ -13,8 +13,8 @@ class RoomInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     LobbyController lobbyController = Get.put(LobbyController());
+    final w = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -50,7 +50,7 @@ class RoomInfo extends StatelessWidget {
                           Text(
                             roomCode,
                             style: TextStyle(
-                                fontSize: 40,
+                                fontSize: w/11,
                                 letterSpacing: 2.4,
                                 fontFamily: "Poppins",
                                 fontWeight: FontWeight.w600,

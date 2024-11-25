@@ -6,8 +6,9 @@ class UserModel {
   String? image;
   String? totalWins;
   String? role;
+  String? totalCoins;
 
-  UserModel({this.role,this.id, this.name, this.email, this.image, this.totalWins});
+  UserModel({this.role,this.id, this.name, this.email, this.image, this.totalWins, this.totalCoins});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     if(json["id"] is String) {
@@ -28,6 +29,9 @@ class UserModel {
     if(json["role"] is String) {
       role = json["role"];
     }
+    if(json["totalCoins"] is String) {
+      role = json["totalCoins"];
+    }
   }
 
   static List<UserModel> fromList(List<Map<String, dynamic>> list) {
@@ -42,6 +46,7 @@ class UserModel {
     _data["image"] = image;
     _data["totalWins"] = totalWins;
     _data["role"] = role;
+    _data["totalCoins"] = totalCoins;
     return _data;
   }
 }

@@ -12,16 +12,22 @@ class RoomController extends GetxController {
   final auth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
   var uuid = Uuid();
-  ProfileController profileController = Get.find();
   RxBool isLoading = false.obs;
 
   RxString roomCode = "".obs;
+  Rx<UserModel> users = UserModel().obs;
+
+  @override
+  void onInit() {
+    getUserDetails();
+    super.onInit();
+  }
 
   Future<void> createRoom() async {
     isLoading.value = true;
     String id = uuid.v4().substring(0, 8).toUpperCase();
     roomCode.value = id;
-    var user = profileController.user.value;
+    var user = users.value;
 
     var player1 = UserModel(
       id: user.id,
@@ -38,13 +44,52 @@ class RoomController extends GetxController {
       winningPrize: "100",
       drawMatch: "",
       player1: player1,
+      gameStatus: "lobby",
+      player1Status: "waiting",
+
+
     );
 
     try {
       await db.collection("rooms").doc(id).set(
         newRoom.toJson(),
       );
-      Get.to(LobbyPage(roomId : id));
+      Get.to(LobbyPage(roomId: id));
+      successMessage("Done");
+    } catch (e) {
+      errorMessage("Error");
+      print(e);
+    }
+    isLoading.value = false;
+  }
+
+  Future<void> getUserDetails() async {
+    await db.collection("users").doc(auth.currentUser!.uid).get().then((value) {
+      users.value = UserModel.fromJson(value.data()!);
+    });
+  }
+
+  Future<void> joinRoom(String roomId) async {
+    isLoading.value = true;
+    var user = users.value;
+
+    var player2 = UserModel(
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      image: user.image,
+      totalWins: "0",
+      role: "player",
+    );
+
+    try {
+      await db.collection("rooms").doc(roomId).update(
+          {
+            "player2": player2.toJson(),
+            "player2Status" : "waiting",
+          }
+      );
+      Get.to(LobbyPage(roomId: roomId));
       successMessage("Done");
     } catch (e) {
       errorMessage("Error");
@@ -55,4 +100,19 @@ class RoomController extends GetxController {
 
 
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
