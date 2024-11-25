@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,8 @@ import 'package:tik_tac_toe_multiplayer/Models/UserModel.dart';
 
 class MultiPlayerController extends GetxController {
   final db = FirebaseFirestore.instance;
-  ConfettiController confettiController = ConfettiController(duration: Duration(seconds: 2));
+  ConfettiController confettiController =
+      ConfettiController(duration: Duration(seconds: 2));
 
   Stream<RoomModel> getRoomDetails(String roomId) {
     return db.collection("rooms").doc(roomId).snapshots().map((event) {
@@ -95,92 +98,184 @@ class MultiPlayerController extends GetxController {
   Future<dynamic> WinnerDialog(String winner, RoomModel roomData) {
     confettiController.play();
     //  scoreCalculate(winner);
-    return Get.defaultDialog(
-        barrierDismissible: false,
-        title: winner == "none" ? "Match Draw" : "Winner is $winner",
-        backgroundColor: Colors.white,
-        content: Padding(
-          padding: EdgeInsets.all(10),
-          child: winner == "none"
-              ? Column(
+
+    return Get.bottomSheet(
+      isDismissible: false,
+      Container(
+          height: 280,
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: winner == "none"
+                ? Column(
+              children: [
+                SvgPicture.asset(
+                  IconsPath.loseIcon,
+                  width: 100,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Match Draw",
+                  style: TextStyle(fontSize: 18),
+                ),
+                Text(
+                  "You Both played well",
+                  style: TextStyle(fontSize: 12),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SvgPicture.asset(
-                      IconsPath.loseIcon,
-                      width: 100,
+                    ElevatedButton(
+                      onPressed: () {
+                        resetPlayValue(roomData);
+                      },
+                      child: Text("Play Again"),
                     ),
-                    SizedBox(
-                      height: 20,
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.offAllNamed("/home");
+                      },
+                      child: Text("Exit"),
                     ),
-                    Text(
-                      "Match Draw",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Text(
-                      "You Both played well",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            resetPlayValue(roomData);
-                          },
-                          child: Text("Play Again"),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.offAllNamed("/home");
-                          },
-                          child: Text("Exit"),
-                        ),
-                      ],
-                    )
                   ],
                 )
-              : Column(
-                  children: [
-                    SvgPicture.asset(
-                      IconsPath.wonIcon,
-                      width: 100,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Congratulations",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Text(
-                      "$winner won the match",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            playAgain(winner, roomData);
-                          },
-                          child: Text("Play Again"),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.offAllNamed("/home");
-                          },
-                          child: Text("Exit"),
-                        ),
-                      ],
-                    )
-                  ],
+              ],
+            )
+                : Column(
+              children: [
+                SvgPicture.asset(
+                  IconsPath.wonIcon,
+                  width: 100,
                 ),
-        ));
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Congratulations",
+                  style: TextStyle(fontSize: 18),
+                ),
+                Text(
+                  "$winner won the match",
+                  style: TextStyle(fontSize: 12),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        playAgain(winner, roomData);
+                      },
+                      child: Text("Play Again"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.offAllNamed("/home");
+                      },
+                      child: Text("Exit"),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
+
+    // return Get.defaultDialog(
+    //     barrierDismissible: false,
+    //     title: winner == "none" ? "Match Draw" : "Winner is $winner",
+    //     backgroundColor: Colors.white,
+    //     content: Padding(
+    //       padding: EdgeInsets.all(10),
+    //       child: winner == "none"
+    //           ? Column(
+    //               children: [
+    //                 SvgPicture.asset(
+    //                   IconsPath.loseIcon,
+    //                   width: 100,
+    //                 ),
+    //                 SizedBox(
+    //                   height: 20,
+    //                 ),
+    //                 Text(
+    //                   "Match Draw",
+    //                   style: TextStyle(fontSize: 18),
+    //                 ),
+    //                 Text(
+    //                   "You Both played well",
+    //                   style: TextStyle(fontSize: 12),
+    //                 ),
+    //                 SizedBox(
+    //                   height: 20,
+    //                 ),
+    //                 Row(
+    //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                   children: [
+    //                     ElevatedButton(
+    //                       onPressed: () {
+    //                         resetPlayValue(roomData);
+    //                       },
+    //                       child: Text("Play Again"),
+    //                     ),
+    //                     ElevatedButton(
+    //                       onPressed: () {
+    //                         Get.offAllNamed("/home");
+    //                       },
+    //                       child: Text("Exit"),
+    //                     ),
+    //                   ],
+    //                 )
+    //               ],
+    //             )
+    //           : Column(
+    //               children: [
+    //                 SvgPicture.asset(
+    //                   IconsPath.wonIcon,
+    //                   width: 100,
+    //                 ),
+    //                 SizedBox(
+    //                   height: 20,
+    //                 ),
+    //                 Text(
+    //                   "Congratulations",
+    //                   style: TextStyle(fontSize: 18),
+    //                 ),
+    //                 Text(
+    //                   "$winner won the match",
+    //                   style: TextStyle(fontSize: 12),
+    //                 ),
+    //                 SizedBox(
+    //                   height: 20,
+    //                 ),
+    //                 Row(
+    //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                   children: [
+    //                     ElevatedButton(
+    //                       onPressed: () {
+    //                         playAgain(winner, roomData);
+    //                       },
+    //                       child: Text("Play Again"),
+    //                     ),
+    //                     ElevatedButton(
+    //                       onPressed: () {
+    //                         Get.offAllNamed("/home");
+    //                       },
+    //                       child: Text("Exit"),
+    //                     ),
+    //                   ],
+    //                 )
+    //               ],
+    //             ),
+    //     ));
   }
 
   Future<void> playAgain(String wonTeam, RoomModel roomData) async {
@@ -194,10 +289,10 @@ class MultiPlayerController extends GetxController {
         name: user.name,
         email: user.email,
         image: user.image,
-        totalWins: totalWin.toString(),//totalwins changed
+        totalWins: totalWin.toString(),
+        //totalwins changed
         role: user.role,
         totalCoins: user.totalCoins,
-
       );
 
       await db.collection("rooms").doc(roomData.id).update({
@@ -205,7 +300,6 @@ class MultiPlayerController extends GetxController {
         "player1": newPlayer1.toJson(),
       });
       Get.back();
-
     } else if (wonTeam == "O") {
       String totalWins = roomData.player2!.totalWins!;
       int totalWin = int.parse(totalWins);
@@ -216,10 +310,10 @@ class MultiPlayerController extends GetxController {
         name: user.name,
         email: user.email,
         image: user.image,
-        totalWins: totalWin.toString(),//totalwins changed
+        totalWins: totalWin.toString(),
+        //totalwins changed
         role: user.role,
         totalCoins: user.totalCoins,
-
       );
 
       await db.collection("rooms").doc(roomData.id).update({
@@ -230,22 +324,10 @@ class MultiPlayerController extends GetxController {
     }
   }
 
-  Future<void>  resetPlayValue(RoomModel roomData) async{
+  Future<void> resetPlayValue(RoomModel roomData) async {
     await db.collection("rooms").doc(roomData.id).update({
       "gameValue": ["", "", "", "", "", "", "", "", ""],
-
     });
     Get.back();
   }
-
-
-
 }
-
-
-
-
-
-
-
-
