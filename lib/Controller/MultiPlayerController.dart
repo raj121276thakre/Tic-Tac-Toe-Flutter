@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:tik_tac_toe_multiplayer/Models/UserModel.dart';
 
 class MultiPlayerController extends GetxController {
   final db = FirebaseFirestore.instance;
+  ConfettiController confettiController = ConfettiController(duration: Duration(seconds: 2));
 
   Stream<RoomModel> getRoomDetails(String roomId) {
     return db.collection("rooms").doc(roomId).snapshots().map((event) {
@@ -91,6 +93,7 @@ class MultiPlayerController extends GetxController {
   }
 
   Future<dynamic> WinnerDialog(String winner, RoomModel roomData) {
+    confettiController.play();
     //  scoreCalculate(winner);
     return Get.defaultDialog(
         barrierDismissible: false,
