@@ -143,7 +143,7 @@ class MultiPlayer extends StatelessWidget {
                                         return InkWell(
                                           onTap: () {
                                             multiPlayerController.updateData(roomId,
-                                                playValue!, index, roomData.isXturn!, roomData);
+                                                playValue!, index, roomData.isXturn!, roomData, multiPlayerController.currentPlayerId );
                                           },
                                           child: AnimatedContainer(
                                             duration: const Duration(milliseconds: 500),

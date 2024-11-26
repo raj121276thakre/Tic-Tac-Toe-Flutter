@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ class MultiPlayerController extends GetxController {
   ConfettiController confettiController =
       ConfettiController(duration: Duration(seconds: 2));
 
+  String currentPlayerId = FirebaseAuth.instance.currentUser!.uid;
+
   Stream<RoomModel> getRoomDetails(String roomId) {
     return db.collection("rooms").doc(roomId).snapshots().map((event) {
       final data = event.data();
@@ -21,31 +24,74 @@ class MultiPlayerController extends GetxController {
     });
   }
 
-  Future<void> updateData(String roomId, List<String> gameValue, int index,
-      bool isXturn, RoomModel roomData) async {
+
+  //
+  // Future<void> updateData(String roomId, List<String> gameValue, int index,
+  //     bool isXturn, RoomModel roomData) async {
+  //   List<String> oldValue = gameValue;
+  //
+  //   if (isXturn) {
+  //     if (oldValue[index] == "") {
+  //
+  //       oldValue[index] = "X";
+  //       print(oldValue);
+  //       await db.collection("rooms").doc(roomId).update({
+  //         "gameValue": oldValue,
+  //         "isXturn": false,
+  //       });
+  //
+  //
+  //     }
+  //   }
+  //   else if (!isXturn) {
+  //     if (oldValue[index] == "") {
+  //       oldValue[index] = "O";
+  //       print(oldValue);
+  //       await db.collection("rooms").doc(roomId).update({
+  //         "gameValue": oldValue,
+  //         "isXturn": true,
+  //       });
+  //     }
+  //   }
+  //   checkWinner(oldValue, roomData);
+  // }
+
+
+
+  Future<void> updateData(
+      String roomId, List<String> gameValue, int index, bool isXturn, RoomModel roomData, String currentPlayerId) async {
     List<String> oldValue = gameValue;
 
-    if (isXturn) {
+    // Restrict the turn based on the current player
+    if (isXturn && currentPlayerId == roomData.player1!.id) {
+      // Player 1's turn
       if (oldValue[index] == "") {
         oldValue[index] = "X";
-        print(oldValue);
         await db.collection("rooms").doc(roomId).update({
           "gameValue": oldValue,
-          "isXturn": false,
+          "isXturn": false, // Switch to Player 2's turn
         });
+        checkWinner(oldValue, roomData); // Check for winner after Player 1's move
       }
-    } else if (!isXturn) {
+    } else if (!isXturn && currentPlayerId == roomData.player2!.id) {
+      // Player 2's turn
       if (oldValue[index] == "") {
         oldValue[index] = "O";
-        print(oldValue);
         await db.collection("rooms").doc(roomId).update({
           "gameValue": oldValue,
-          "isXturn": true,
+          "isXturn": true, // Switch to Player 1's turn
         });
+        checkWinner(oldValue, roomData); // Check for winner after Player 2's move
       }
     }
-    checkWinner(oldValue, roomData);
   }
+
+
+
+
+
+
+
 
   void checkWinner(List<String> playValue, RoomModel roomData) {
     // Horizontal win
