@@ -1,3 +1,4 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,9 @@ class SinglePlayerController extends GetxController {
   RxList playValue = ["", "", "", "", "", "", "", "", ""].obs;
   RxBool isXtime = true.obs;
   RxInt xScore = 0.obs;
-
   RxInt oScore = 0.obs;
+  ConfettiController confettiController =
+  ConfettiController(duration: Duration(seconds: 2));
 
   void onClick(int index) {
     if (playValue[index] == "") {
@@ -87,6 +89,7 @@ class SinglePlayerController extends GetxController {
   }
 
   Future<dynamic> WinnerDialog(String winner) {
+    confettiController.play();
     scoreCalculate(winner);
     return Get.defaultDialog(
         barrierDismissible: false,
